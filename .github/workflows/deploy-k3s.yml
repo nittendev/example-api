@@ -1,13 +1,11 @@
 # .github/workflows/deploy.yml
 name: Deploy
 on: ['push']
-
 jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: actions/checkout@v1
-
     - name: 'Deploy'
       uses: 'glopezep/helm@v1.7.1'
       with:
