@@ -1,22 +1,26 @@
-name: Deploy
-on: ['push']
-  
+name: Docker Image Deploy Kubernetes - Helm
+on: [push]
 jobs:
-  deployment:
-    runs-on: 'ubuntu-latest'
+  build:
+    runs-on: ubuntu-latest
+    environment: default
     steps:
-    - uses: actions/checkout@v1  
-    
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
-      with:
-        release: 'example-api'
-        namespace: 'default'
-        chart: '.helm/example/'
-        token: '${{ github.token }}'
-        values: |
-          name: example-api
+      - uses: licenseware/helm@v1
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG_FILE }} # JSON/YAML encoded string
+          action: upgrade -i # upgrade -i, install, uninstall, etc.
+          atomic: "1"
+          build-dependencies: "0" # helm dep build
+          chart-dir: ./helm
+          chmod-kubeconfig: "1" # `chmod 600 kubeconfig-filepath`
+          cleanup: "1" # delete all the files i.e. kubeconfig & values
+          cleanup-on-fail: "1" # delete newly created resources on failure
+          create-namespace: "0"
+          helm-version: "v3.10.1" # https://github.com/helm/helm/releases
           namespace: default
-          image: nittendev/example-api
-      env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+          release-name: ${{ github.event.repository.name }}
+          reuse-values: "0" # possible values: [0, 1] default: 0
+          timeout: 10m
+          update-dependencies: "1" # helm dep update
+          values-string: name=example-api,namespace=default,image=nittendev/example-api
+          wait: "1"
