@@ -10,5 +10,5 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: nittendev/example-api
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ vars.DOCKER_USERNAME }}
+        password: ${{ vars.DOCKER_PASSWORD }}
