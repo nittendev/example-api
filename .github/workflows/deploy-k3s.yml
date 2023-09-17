@@ -11,7 +11,7 @@ jobs:
           action: upgrade -i # upgrade -i, install, uninstall, etc.
           atomic: "1"
           build-dependencies: "0" # helm dep build
-          chart-dir: ./helm
+          chart-dir: ./.helm
           chmod-kubeconfig: "1" # `chmod 600 kubeconfig-filepath`
           cleanup: "1" # delete all the files i.e. kubeconfig & values
           cleanup-on-fail: "1" # delete newly created resources on failure
