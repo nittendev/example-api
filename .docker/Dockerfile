@@ -13,7 +13,7 @@ RUN yarn install --production=false --ignore-optional --non-interactive && \
     yarn cache clean && \
     rm -rf dist/*
 
-COPY ./nest .
+COPY . .
 
 RUN yarn build
 
