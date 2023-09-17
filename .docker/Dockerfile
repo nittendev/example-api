@@ -17,7 +17,7 @@ COPY . .
 
 RUN yarn build
 
-FROM node:18-alpine as production
+FROM node:20-alpine as production
 
 LABEL DATE_CREATED=20220310144005
 
