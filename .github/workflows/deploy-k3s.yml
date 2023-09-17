@@ -16,7 +16,9 @@ jobs:
         chart: '.helm/example/'
         token: '${{ github.token }}'
         values: |
-          name: foobar
-        value-files: "values.yaml"
+          name: example-api
+          namespace: default
+          image: nittendev/example-api
+          changeCause: 'First deploy.'        
       env:
         KUBECONFIG_FILE: '${{ vars.KUBECONFIG }}'
