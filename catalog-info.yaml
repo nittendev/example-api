@@ -6,6 +6,7 @@ metadata:
     Example Nest API
   annotations:
     circleci.com/project-slug: github/nittendev/example-api
+    github.com/project-slug: 'nittendev/example-api'
   links:
   - title: Website
     url: http://example-api.dwell.se/
