@@ -1,0 +1,5 @@
+nest/node_modules
+nest/dist
+nest/files
+nest/coverage
+.DS_Store

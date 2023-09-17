@@ -1,0 +1,4 @@
+name: example-api
+namespace: default
+image: nittendev/example-api:master-3038
+changeCause: 'First deploy.'

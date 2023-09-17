@@ -1,0 +1,18 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.1.0
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+    - checkout
+    - node/install:
+        install-yarn: true
+        node-version: '20.0.0'
+    - run: yarn install
+    - run: yarn test
+workflows:
+  build-and-test:
+    jobs:
+    - build-and-test

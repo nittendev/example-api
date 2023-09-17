@@ -1,2 +1,1 @@
-# example-api
-Just an example api
+placeholder, real projects have real readmes

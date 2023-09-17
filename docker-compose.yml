@@ -1,0 +1,20 @@
+version: "3.8"
+
+networks:
+  default:
+    name: bepis-net
+    external: true
+
+services:
+  example-api:
+    image: example-api:${GIT_COMMIT:-latest}
+    build:
+      context: .
+      args:
+        NODE_ENV: 'production'
+    ports:
+      - 3116:3116
+    environment:
+      TZ: 'Europe/Stockholm'
+      REGISTER_RABBIT_SUBSCRIBERS: 'true'
+    restart: unless-stopped

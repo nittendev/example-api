@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: default
+annotations:
+  'backstage.io/kubernetes-id': example-api
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.staticImage }}
+          ports:
+            - name: http
+              containerPort: 3116
+              protocol: TCP
+          resources:
+            requests:
+              memory: "80Mi"
+            limits:
+              memory: "256Mi"
