@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: default
     steps:
+      - uses: actions/checkout@v2
       - uses: licenseware/helm@v1
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }} # JSON/YAML encoded string
