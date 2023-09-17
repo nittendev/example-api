@@ -7,19 +7,22 @@ jobs:
     permissions: write-all
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: actions/checkout@v1
-
-    - name: 'Deploy'
-      uses: 'glopezep/helm@v1.7.1'
-      with:
-        release: 'example-api'
-        namespace: 'default'
-        chart: '.helm/example/'
-        token: '${{ github.token }}'
-        values: |
-          name: example-api
-          namespace: default
-          image: nittendev/example-api
-          changeCause: 'First deploy.'        
-      env:
-        KUBECONFIG_FILE: '${{ vars.KUBECONFIG_FILE }}'
+      - name: 'Checkout'
+        uses: 'actions/checkout@v1'
+      - name: Set Test Kubeconfig
+        if: github.ref == 'refs/heads/test'
+        run: |
+          echo "KUBECONFIG_FILE<<EOF" >> $GITHUB_ENV
+          echo "${{ vars.KUBECONFIG_FILE }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: 'Deploy'
+        uses: 'glopezep/helm@v1.7.1'
+        with:
+          release: 'example-api'
+          namespace: 'default'
+          chart: '.helm/example/'
+          token: '${{ github.token }}'
+          values: |
+            name: example-api
+            namespace: default
+            image: nittendev/example-api
