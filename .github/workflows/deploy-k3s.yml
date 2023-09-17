@@ -8,14 +8,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: licenseware/helm@v1
         with:
-          kubeconfig: ${{ vars.KUBECONFIG_FILE }} # JSON/YAML encoded string
+          kubeconfig: ${{ secrets.KUBECONFIG }} # JSON/YAML encoded string
           action: upgrade -i # upgrade -i, install, uninstall, etc.
           atomic: "1"
           build-dependencies: "0" # helm dep build
           chart-dir: ./helm
-          chmod-kubeconfig: "1" # `chmod 600 kubeconfig-filepath`
-          cleanup: "1" # delete all the files i.e. kubeconfig & values
-          cleanup-on-fail: "1" # delete newly created resources on failure
+          chmod-kubeconfig: "0" # `chmod 600 kubeconfig-filepath`
+          cleanup: "0" # delete all the files i.e. kubeconfig & values
+          cleanup-on-fail: "0" # delete newly created resources on failure
           create-namespace: "0"
           helm-version: "v3.10.1" # https://github.com/helm/helm/releases
           namespace: default
