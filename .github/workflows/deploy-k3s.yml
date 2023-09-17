@@ -10,7 +10,7 @@ jobs:
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }} # JSON/YAML encoded string
           action: upgrade -i # upgrade -i, install, uninstall, etc.
-          atomic: "1"
+          atomic: "0"
           build-dependencies: "0" # helm dep build
           chart-dir: ./helm
           chmod-kubeconfig: "0" # `chmod 600 kubeconfig-filepath`
