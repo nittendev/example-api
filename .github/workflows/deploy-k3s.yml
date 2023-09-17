@@ -22,4 +22,4 @@ jobs:
           image: nittendev/example-api
           changeCause: 'First deploy.'        
       env:
-        KUBECONFIG_FILE: '${{ vars.KUBECONFIG }}'
+        KUBECONFIG_FILE: '${{ vars.KUBECONFIG_FILE }}'
