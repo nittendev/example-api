@@ -5,7 +5,7 @@ metadata:
   description: |
     Example Nest API
   annotations:
-    circleci.com/project-slug: github/nittendev/example-api
+    github.com/project-slug: 'nittendev/example-api'
     backstage.io/kubernetes-id: example-api
   links:
   - title: Website
