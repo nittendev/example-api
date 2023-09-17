@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: licenseware/helm@v1
         with:
-          kubeconfig: ${{ secrets.KUBECONFIG_FILE }} # JSON/YAML encoded string
+          kubeconfig: ${{ secrets.KUBECONFIG }} # JSON/YAML encoded string
           action: upgrade -i # upgrade -i, install, uninstall, etc.
           atomic: "1"
           build-dependencies: "0" # helm dep build
