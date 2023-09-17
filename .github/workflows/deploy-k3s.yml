@@ -1,10 +1,10 @@
 # .github/workflows/deploy.yml
 name: Deploy
-on: [push]
+on: ['deployment']
+
 jobs:
   deployment:
     runs-on: 'ubuntu-latest'
-    environment: default
     steps:
     - uses: actions/checkout@v1
 
@@ -17,6 +17,6 @@ jobs:
         token: '${{ github.token }}'
         values: |
           name: foobar
-        value-files: ".helm/example/values.yaml"
+        value-files: "values.yaml"
       env:
-        KUBECONFIG_FILE: '${{ vars.KUBECONFIG }}'
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
